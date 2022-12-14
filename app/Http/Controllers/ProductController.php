@@ -86,7 +86,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product =Product::find($id);
+        return view('product.edit')->with('product', $product);
     }
 
     /**
@@ -98,7 +99,39 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'product_name' => 'required',
+            'picture' => 'required',
+            'description' => 'required',
+            'available_quantity' => 'required',
+            'price' => 'required',
+            'user_email' =>'required'
+        ]);
+
+        $data = $request->all();
+
+        if($image = $request->file('picture')) {
+            $name = time(). '.' .$image->getClientOriginalName();
+            $image->move(public_path('images'), $name);
+            $data['picture'] = "$name";
+        }
+
+        // Product::find($id)->update([
+        //     'picture' => $data['picture'],
+        //     'title' => $data['title'],
+        //     'price' => $data['price'],
+        //     'description' => $data['description']
+        // ]);
+        $product = Product::find($id);
+        $product->product_name = $data['product_name'];
+        $product->user_email = $data['user_email'];
+        $product->picture = $data['picture'];
+        $product->description = $data['description'];
+        $product->available_quantity = $data['available_quantity'];
+        $product->price = $data['price'];
+        $product->save();
+
+        return redirect('/products');
     }
 
     /**

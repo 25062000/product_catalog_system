@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Enquiry;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -16,4 +17,9 @@ class Product extends Model
         'price',
         'user_email'
     ];
+
+    public function enquiries()
+    {
+        return $this->hasMany(Enquiry::class);
+    }
 }

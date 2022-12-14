@@ -13,7 +13,7 @@
                       <h5 class="card-title">{{ $product->name }}</h5>
                       <h5 class="card-title">Price: ${{ $product->name }}</h5>
                       <hr>
-                      <p class="card-text">Available Quanitiy {{ $product->available_quantity }}</p>
+                      <p class="card-text">Available Quanitity {{ $product->available_quantity }}</p>
                       <p class="card-text">{{ $product->description }}</p>
                       <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary">Detail</a>
                     </div>
