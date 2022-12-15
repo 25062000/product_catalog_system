@@ -3,6 +3,7 @@
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\ProductController;
 
@@ -26,11 +27,18 @@ Route::get('/products',[ProductController::class, 'index'])->name('product.index
 Route::get('/products/create', [ProductController::class, 'create'])->name('product.create');
 Route::post('/products/store', [ProductController::class, 'store'])->name('product.store');
 Route::get('products/{id}', [ProductController::class, 'show'])->name('product.show');
-
 Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
 Route::post('/products/update/{id}', [ProductController::class, 'update'])->name('product.update');
+
+
 //Enquiry
 Route::post('/products/storeenquiry', [EnquiryController::class, 'addEnquiry'])->name('enquiry.store');
+
+//admin
+
+Route::get('/admin/products', [AdminController::class, 'adminViewProducts'])->name('admin.product.index');
+Route::delete('/admin/products/delete/{id}',[AdminController::class, 'deleteProduct'])->name('admin.product.delete');
+Route::get('/admin/products/{id}', [AdminController::class, 'show'])->name('admin.product.show');
 
 Auth::routes();
 

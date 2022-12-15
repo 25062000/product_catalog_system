@@ -16,7 +16,17 @@
                       <hr>
                       <p class="card-text">Available Quanitity {{ $product->available_quantity }}</p>
                       <p class="card-text">{{ $product->description }}</p>
-                      <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary">Detail</a>
+                      <div class="container" style="display:flex">
+                        <a href="{{ route('admin.product.show', $product->id) }}" class="btn btn-primary ">Details</a>
+
+                        <form action="{{ route('admin.product.delete', $product->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger ">Delete</button>
+                        </form>
+
+                    </div>
+
                     </div>
                   </div>
 
