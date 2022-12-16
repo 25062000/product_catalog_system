@@ -15,14 +15,15 @@
                       <h5 class="card-title">Price: ${{ $product->price }}</h5>
                       <hr>
                       <p class="card-text">Available Quanitity {{ $product->available_quantity }}</p>
-                      <p class="card-text">{{ $product->description }}</p>
+                      {{-- <p class="card-text">{{ $product->description }}</p> --}}
                       <div class="container" style="display:flex">
-                        <a href="{{ route('admin.product.show', $product->id) }}" class="btn btn-primary ">Details</a>
+                        <a href="{{ route('admin.product.show', $product->id) }}" class="btn btn-primary pb-0">Details</a>
 
-                        <form action="{{ route('admin.product.delete', $product->id)}}" method="POST">
+                        <form action="{{ route('admin.product.delete', $product->id)}}" method="POST" style="
+                            margin-bottom: 0px;>
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger ">Delete</button>
+                            <button type="submit" class="btn btn-danger ms-3 ">Delete</button>
                         </form>
 
                     </div>

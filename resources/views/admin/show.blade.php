@@ -12,9 +12,9 @@
                     <img src="/images/{{ $product->picture }}" height="350px" alt="...">
                     <div class="container m-2 p-2">
                         <h2>Price: {{ $product->price }}</h2>
-                        <h5>Available Quantity: {{ $product->available_quantity }}</h5>
+                        <h5 class="mt-3">Available Quantity: {{ $product->available_quantity }}</h5>
                         <p>{{ $product->description }}</p>
-                        <a href="{{ route('home') }}" class="btn btn-success">Go Menu</a>
+                        <a href="{{ route('admin.product.index') }}" class="btn btn-success">Go Back</a>
                         {{-- <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">Edit</a> --}}
                     </div>
                 </div>
@@ -65,22 +65,26 @@
   </div>
             </div> --}}
 
-            <div class="col-md-4 mt-3">
-                <h3>All Enquiries</h3>
 
-                <div>
-                    @foreach ($product->enquiries as $enquiry )
-                        <div class="mb-2">
-                            <p>Query sender</p>
-                            <h5>{{ $enquiry->enquiry }}</h5>
-                            <hr>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-            </div>
+        </div>
 
     </div>
+</div>
+<div class="container">
+    <h4>All Enquiries</h4>
+
+    <div>
+        @foreach ($product->enquiries as $enquiry )
+            <div class="mb-2">
+                <p>{{ $enquiry->user_email }}</p>
+                <h5>{{ $enquiry->enquiry }}</h5>
+                <hr>
+            </div>
+        @endforeach
+    </div>
+
+
+
 </div>
 @endsection
 

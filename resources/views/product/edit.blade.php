@@ -8,7 +8,7 @@
             @csrf
             <div class="mb-3">
               <label for="product_name" class="form-label">Product Name</label>
-              <input type="text" class="form-control" id="product_name" name="product_name">
+              <input type="text" class="form-control" id="product_name" name="product_name" value={{ $product->product_name }}>
             </div>
 
             <div class="mb-3">
@@ -18,22 +18,22 @@
 
             <div class="mb-3">
                 <label for="picture" class="form-label">Choose Picture</label>
-                <input type="file" class="form-control" name="picture" id="picture">
+                <input type="file" class="form-control" name="picture" id="picture" value="">
             </div>
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <input type="text" class="form-control" id="description"  name="description">
+                <input type="text" class="form-control" id="description"  name="description" value={{ $product->description }}>
             </div>
 
             <div class="mb-3">
                 <label for="available_quantity" class="form-label">Available Quantity</label>
-                <input type="text" class="form-control" id="available_quantity"  name="available_quantity">
+                <input type="text" class="form-control" id="available_quantity"  name="available_quantity" value={{ $product->available_quantity }}>
             </div>
 
             <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
-                <input type="text" class="form-control" id="price"  name="price">
+                <input type="text" class="form-control" id="price"  name="price" value={{ $product->price }}>
             </div>
 
 

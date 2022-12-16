@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -11,7 +12,14 @@ class ProductController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
      */
+
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $products = Product::all();
@@ -116,12 +124,7 @@ class ProductController extends Controller
             $data['picture'] = "$name";
         }
 
-        // Product::find($id)->update([
-        //     'picture' => $data['picture'],
-        //     'title' => $data['title'],
-        //     'price' => $data['price'],
-        //     'description' => $data['description']
-        // ]);
+
         $product = Product::find($id);
         $product->product_name = $data['product_name'];
         $product->user_email = $data['user_email'];
@@ -131,7 +134,7 @@ class ProductController extends Controller
         $product->price = $data['price'];
         $product->save();
 
-        return redirect('/products');
+        return redirect('/myproducts');
     }
 
     /**
@@ -142,6 +145,20 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+       Product::find($id)->delete();
+       return redirect('/myproducts');
+    }
+
+    public function myproduct(){
+        $productemail = Auth::user()->email;
+
+        $myproducts = Product::where('user_email', $productemail)->get();
+   
+        return view('product.myproducts')->with('myproducts', $myproducts);
+    }
+
+    public function myproductdetail($id){
+        $product = Product::find($id);
+        return view('product.myproductsdetail')->with('product', $product);
     }
 }

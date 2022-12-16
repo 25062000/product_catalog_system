@@ -14,21 +14,15 @@
                         <h2>Price: {{ $product->price }}</h2>
                         <h5>Available Quantity: {{ $product->available_quantity }}</h5>
                         <p>{{ $product->description }}</p>
-                        <a href="{{ route('home') }}" class="btn btn-success">Go Menu</a>
-                        <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">Edit</a>
-                    </div>
+                        <div class="container">
+                        <a href="{{ route('product.index') }}" class="btn btn-success">View All</a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Enquiry
+                          </button>
+                        </div>
+
                 </div>
             </div>
-
-
-            {{-- //Next Column --}}
-
-            <div class="col-md-4">
-             <div class="container">
-                <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Enquiry
-  </button>
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -44,7 +38,7 @@
 
             <div class="mb-3">
                 <input type="hidden" class="form-control" name="product_id" id="product_id" value={{ $product->id }} >
-
+                <input type="text" class="form-control" name="user_email" id="user_email" value={{ Auth::user()->email }} >
             </div>
 
             <div class="mb-3">
@@ -63,23 +57,22 @@
       </div>
     </div>
   </div>
-            </div>
 
-            <div class="container mt-3">
-                <h3>All Enquiries</h3>
+</div>
+</div>
 
-                <div>
-                    @foreach ($product->enquiries as $enquiry )
-                        <div class="mb-2">
-                            <p>Query sender</p>
-                            <h5>{{ $enquiry->enquiry }}</h5>
-                            <hr>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-            </div>
 
+<div class="container mt-3">
+    <h4>All Enquiries</h4>
+
+    <div>
+        @foreach ($product->enquiries as $enquiry )
+            <div class="mb-2">
+                <p>{{ $enquiry->user_email }}</p>
+                <h5>{{ $enquiry->enquiry }}</h5>
+                <hr>
+            </div>
+        @endforeach
     </div>
 </div>
 @endsection

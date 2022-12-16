@@ -19,8 +19,8 @@
               <h1>Big Sale</h1>
               <p>Don't miss the deal</p>
               <a class="button button-hero" href="{{ route('product.create') }}" style="position:absolute; left:600px;">Add Products</a><br><br><br>
-              <a class="button button-hero" href="{{ route('product.index') }}" style="position:absolute; left:650px;">View Products</a><br><br><br>
-              <a class="button button-hero" href="#" style="position:absolute; left:700px;">My Products</a>
+              <a class="button button-hero" href="{{ route('admin.product.index') }}" style="position:absolute; left:650px;">View Products</a><br><br><br>
+              <a class="button button-hero" href="{{ route('product.myproducts') }}" style="position:absolute; left:700px;">My Products</a>
             </div>
           </div>
         </div>

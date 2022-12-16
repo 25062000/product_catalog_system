@@ -12,7 +12,8 @@ class Enquiry extends Model
 
     protected $fillable =[
         'product_id',
-        'enquiry'
+        'enquiry',
+        'user_email'
     ];
 
     public function product() {
